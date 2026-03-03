@@ -21,7 +21,7 @@ EventBus="*uid://vdd26aneowp3"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gbsn_core_mechanics/plugin.cfg")
+enabled=PackedStringArray("res://addons/gbsn_core_mechanics/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
 
 [physics]
 
