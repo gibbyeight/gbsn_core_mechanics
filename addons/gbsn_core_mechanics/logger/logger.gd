@@ -133,7 +133,7 @@ func _log_message(message: Variant, severity: EMessageSeverity) -> void:
 			]
 
 		# Write the message to the Godot output window
-		_log_message_output(formatted_message)
+		_log_message_output(formatted_message, severity)
 
 		if (m_log_file):
 			# Write the message to the log file
@@ -141,8 +141,13 @@ func _log_message(message: Variant, severity: EMessageSeverity) -> void:
 
 ## Description: Internal logging function to standard output
 ## Parameter message: The message string output
-func _log_message_output(message: String) -> void:
-	print(message)
+func _log_message_output(message: String, severity) -> void:
+	if severity == EMessageSeverity.ERROR:
+		push_error(message)
+	elif severity == EMessageSeverity.WARNING:
+		push_warning(message)
+	else:
+		print(message)
 
 ## Description: Internal logging function to a file
 ## Parameter message: The message string to output

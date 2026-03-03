@@ -1,0 +1,32 @@
+name: Release New Version
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version_override:
+        description: "Full version override (e.g., 1.0.0, 2.1.0). If set, uses this exact version"
+        required: false
+        type: string
+      bump_type:
+        description: "Version bump type override (auto = detect from commits, or force major/minor/patch)"
+        required: false
+        type: choice
+        options:
+          - auto
+          - major
+          - minor
+          - patch
+        default: auto
+  
+permissions:
+  contents: write
+  id-token: write
+
+
+jobs:
+
+
+

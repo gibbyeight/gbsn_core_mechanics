@@ -7,7 +7,11 @@ extends Node
 
 # HACK: ** EVENTBUS DEBUGGER PLUGIN **
 const MAX_RECENT_EMITS: int = 100
-var debug_subscriptions: Dictionary = {}
+
+var debug_subscriptions: Dictionary = {}:
+	get:
+		return debug_subscriptions
+
 var recent_emits: Array = []
 
 ## Dictionary of event_id to dynamic signal
