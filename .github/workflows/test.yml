@@ -36,6 +36,6 @@ jobs:
         with:
           godot-version: '4.6'
           paths: |
-            res://project/tests/
+            res://addons/gbsn_core_mechanics/test/
           timeout: 5
           report-name: test_report.xml  
