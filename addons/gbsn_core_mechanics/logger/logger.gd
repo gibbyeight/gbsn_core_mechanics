@@ -87,23 +87,23 @@ func _get_log_file_name() -> String:
 
 ## Description: Logs a message with the severity of Debug
 ## Parameter message: The message string to output
-func debug(message: Variant) -> void:
-	_log_message(message, EMessageSeverity.DEBUG)
+func debug(message: Variant) -> Variant:
+	return _log_message(message, EMessageSeverity.DEBUG)
 
 ## Description: Logs a message with the severity of Info
 ## Parameter message: The message string to output
-func info(message: Variant) -> void:
-	_log_message(message, EMessageSeverity.INFO)
+func info(message: Variant) -> Variant:
+	return _log_message(message, EMessageSeverity.INFO)
 
 ## Description: Logs a message with the severity of Warning
 ## Parameter message: The message string to output
-func warning(message: Variant) -> void:
-	_log_message(message, EMessageSeverity.WARNING)
+func warning(message: Variant) -> Variant:
+	return _log_message(message, EMessageSeverity.WARNING)
 
 ## Description: Logs a message with the severity of Error
 ## Parameter message: The message string to output
-func error(message: Variant) -> void:
-	_log_message(message, EMessageSeverity.ERROR)
+func error(message: Variant) -> Variant:
+	return _log_message(message, EMessageSeverity.ERROR)
 
 ## Description: Sets the current logging level
 ## Parameter level: Required logging level
@@ -113,7 +113,8 @@ func set_logging_level(level: EMessageSeverity) -> void:
 ## Description: Internal logging function for all message severities
 ## Parameter message: The message string to output
 ## Parameter severity: The severity of the message to output
-func _log_message(message: Variant, severity: EMessageSeverity) -> void:
+func _log_message(message: Variant, severity: EMessageSeverity) -> Variant:
+	var formatted_message: String
 	if (logging_level <= severity):
 		var stack = get_stack()
 		var caller = stack.back() if stack.size() > 1 else null
@@ -123,7 +124,7 @@ func _log_message(message: Variant, severity: EMessageSeverity) -> void:
 		else:
 			location = "Called from editor (tool mode)"
 
-		var formatted_message: String = "%s %s [%s] %s \n - At: [%s] \n" % \
+		formatted_message = "%s %s [%s] %s \n - At: [%s] \n" % \
 			[
 				_get_date_for_log(),
 				_get_time_for_log(),
@@ -138,6 +139,8 @@ func _log_message(message: Variant, severity: EMessageSeverity) -> void:
 		if (m_log_file):
 			# Write the message to the log file
 			_log_message_file(formatted_message)
+		
+	return formatted_message
 
 ## Description: Internal logging function to standard output
 ## Parameter message: The message string output

@@ -17,9 +17,6 @@ var recent_emits: Array = []
 ## Dictionary of event_id to dynamic signal
 @onready var signal_registry: Dictionary = {}
 
-func _ready():
-	pass
-
 func _ensure_signal(event_id: String) -> void:
 	if not signal_registry.has(event_id):
 		# Define a new dynamic signal
@@ -54,12 +51,12 @@ func subscribe(event_id: String, subscriber: Object, method_name: String) -> voi
 		# HACK: ** EVENTBUS DEBUGGER PLUGIN **
 		if not debug_subscriptions.has(event_id):
 			debug_subscriptions[event_id] = []
-		debug_subscriptions[event_id].append({
-			"callable": callable,
-			"subscriber_name": str(subscriber),
-			"method": method_name,
-			"connected_at": Time.get_ticks_msec()
-		})
+			debug_subscriptions[event_id].append({
+				"callable": callable,
+				"subscriber_name": str(subscriber),
+				"method": method_name,
+				"connected_at": Time.get_ticks_msec()
+			})
 
 
 func unsubscribe(event_id: String, subscriber: Object, method_name: String) -> void:

@@ -60,16 +60,31 @@ func test_subscribe() -> void:
 	assert_dict(mock_event_bus.debug_subscriptions).contains_key_value(TestEventLibrary.TEST_EVENTS.TEST_EVENT, mock_sub)
 
 
-func test_subscribe_instance_invalid() -> void:
-	# Given: I have an invalid object
+func test_subscribe_invalid_method() -> void:
+	# Given: I have an object an invalid method
 	var mock_event_bus := auto_free(EventBusService.new())
 	var mock_object := Object.new()
-	var method_name: String = "get"
-	mock_object.free()
+	var method_name: String = "invalid_method"
 	
-	# When: I try to subscribe the object to the event
+	# When: I try to subscribe the object
 	mock_event_bus.subscribe(TestEventLibrary.TEST_EVENTS.TEST_EVENT, mock_object, method_name)
 	
 	# Then: I assert the no event has been subscribed
-	assert_array(mock_event_bus.debug_subscriptions).is_empty()
+	assert_dict(mock_event_bus.debug_subscriptions).is_empty()
+
+
+func test_subscribe_existing_subscirption() -> void:
+	# Given: I have an object and subscribie it to the test event
+	var mock_event_bus := auto_free(EventBusService.new())
+	var mock_object := Object.new()
+	var method_name: String = "get"
 	
+	mock_event_bus.subscribe(TestEventLibrary.TEST_EVENTS.TEST_EVENT, mock_object, method_name)
+	assert_dict(mock_event_bus.debug_subscriptions).has_size(1)
+	
+	# When: I subscribe the object to the event that already exist
+	mock_event_bus.subscribe(TestEventLibrary.TEST_EVENTS.TEST_EVENT, mock_object, method_name)
+	
+	# Then: I assert there is only one subscription
+	assert_signal(mock_event_bus).is_signal_exists(str(TestEventLibrary.TEST_EVENTS.TEST_EVENT))
+	assert_dict(mock_event_bus.debug_subscriptions).has_size(1)
