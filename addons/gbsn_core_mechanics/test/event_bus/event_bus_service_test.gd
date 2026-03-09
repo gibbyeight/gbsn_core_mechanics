@@ -78,6 +78,7 @@ func test_subscribe_existing_subscirption() -> void:
 	var mock_event_bus := auto_free(EventBusService.new())
 	var mock_object := Object.new()
 	var method_name: String = "get"
+	var ml := mock(Logger.new())
 	
 	mock_event_bus.subscribe(TestEventLibrary.TEST_EVENTS.TEST_EVENT, mock_object, method_name)
 	assert_dict(mock_event_bus.debug_subscriptions).has_size(1)
