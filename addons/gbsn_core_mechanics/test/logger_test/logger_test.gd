@@ -31,5 +31,25 @@ func test_logs_folder() -> void:
 	assert_str(Log.logs_folder).is_equal(test_log_folder_path)
 
 
-func test_logging_level() -> void:
-	assert_str(Log.logging_level).is_empty("")
+func test_logging_level_default() -> void:
+	assert_int(Log.logging_level).is_equal(0)
+
+
+func test_logging_level_set_to_debug() -> void:
+	Log.set_logging_level(Log.EMessageSeverity.DEBUG)
+	assert_int(Log.logging_level).is_equal(0)
+
+
+func test_logging_level_set_to_info() -> void:
+	Log.set_logging_level(Log.EMessageSeverity.INFO)
+	assert_int(Log.logging_level).is_equal(1)
+
+
+func test_logging_level_set_to_warning() -> void:
+	Log.set_logging_level(Log.EMessageSeverity.WARNING)
+	assert_int(Log.logging_level).is_equal(2)
+
+
+func test_logging_level_set_to_error() -> void:
+	Log.set_logging_level(Log.EMessageSeverity.ERROR)
+	assert_int(Log.logging_level).is_equal(3)

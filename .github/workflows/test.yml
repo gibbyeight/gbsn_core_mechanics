@@ -2,6 +2,9 @@ name: Run Tests
 run-name: ${{ github.head_ref || github.ref_name }}-test-run
 
 on:
+  push:
+    branches:
+      - mains
   pull_request:
     paths-ignore:
       - '**.yml'
