@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c51xsbcwjuw5d"]
+
+[ext_resource type="Script" uid="uid://dr3h60ca80utt" path="res://addons/gbsn_core_mechanics/event_bus/example_scene/example_subscriber.gd" id="1_jow74"]
+[ext_resource type="Script" uid="uid://dlxki371kp5y8" path="res://addons/gbsn_core_mechanics/event_bus/example_scene/example_broadcaster.gd" id="2_kr55l"]
+
+[node name="ExampleScene" type="Node2D" unique_id=1274821907]
+
+[node name="Subscriber" type="Node" parent="." unique_id=261909256]
+script = ExtResource("1_jow74")
+
+[node name="Broadcaster" type="Node" parent="." unique_id=1222944141]
+script = ExtResource("2_kr55l")
