@@ -20,12 +20,14 @@ func _ready() -> void:
 ## This runs whenever the state becomes active
 ## previous_state is there in case you need to know what you came from
 func enter(_previous_state: State = null) -> void:
-	Log.debug("Entering state: " + self.ID)
+	if ProjectSettings.get_setting("gbsn_logger/settings/state_logs") == true:
+		Log.debug("Entering state: " + self.ID)
 
 ## Runs before the state is left
 ## next_state is there so you can clean up differently depending on where you’re going
 func exit(_next_state: State = null) -> void:
-	Log.debug("Exiting state: " + self.ID)
+	if ProjectSettings.get_setting("gbsn_logger/settings/state_logs") == true:
+		Log.debug("Exiting state: " + self.ID)
 
 
 func handle_input(_event: InputEvent) -> void: pass

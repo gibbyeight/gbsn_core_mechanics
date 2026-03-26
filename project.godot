@@ -23,6 +23,11 @@ EventBus="*uid://vdd26aneowp3"
 
 enabled=PackedStringArray("res://addons/gbsn_core_mechanics/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
 
+[gbsn_logger]
+
+settings/state_logs=true
+settings/event_logs=true
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
