@@ -121,8 +121,7 @@ func unsubscribe(event_id: String, subscriber: Object, method_name: String) -> v
 func broadcast(event: Event) -> void:
 	var event_id = event.event_id
 	if not signal_registry.has(event_id):
-		if ProjectSettings.get_setting("gbsn_logger/settings/event_logs") == true:
-			Log.warning("[EventBus] No subscribers for event: %s" % event_id)
+		Log.warning("[EventBus] No subscribers for event: %s" % event_id)
 		return # No one subscribed
 	
 	if ProjectSettings.get_setting("gbsn_logger/settings/event_logs") == true:
