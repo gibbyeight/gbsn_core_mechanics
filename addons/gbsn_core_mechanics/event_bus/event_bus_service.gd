@@ -124,8 +124,9 @@ func broadcast(event: Event) -> void:
 		if ProjectSettings.get_setting("gbsn_logger/settings/event_logs") == true:
 			Log.warning("[EventBus] No subscribers for event: %s" % event_id)
 		return # No one subscribed
-
-	Log.debug("[EventBus] Emitting '%s' with event: %s" % [event_id, event])
+	
+	if ProjectSettings.get_setting("gbsn_logger/settings/event_logs") == true:
+		Log.debug("[EventBus] Emitting '%s' with event: %s" % [event_id, event])
 	emit_signal(event_id, event)
 	
 	var sub_count: int = debug_subscriptions.get(event_id, []).size()
