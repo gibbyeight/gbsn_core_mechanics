@@ -2,12 +2,16 @@
 class_name State
 extends Node
 
+signal finished(next_state_path: String, data: Dictionary)
+
 ## state_machine is a reference to the GameStateMachine that owns this state
 ## so the state can tell the machine to change states or access shared data
-@export var state_machine: StateMachine
+@export var state_machine: StateMachine = get_parent()
 ## name is just an identifier for logging/debugging/events
 
 var ID: StringName
+
+var active: bool
 
 func _ready() -> void:
 	if get_parent() is StateMachine:
@@ -35,8 +39,8 @@ func update(_delta: float) -> void: pass
 func physics_update(_delta: float) -> void: pass
 
 
-func _report_event(event: ActiveStateChangedEvent) -> void:
-	EventBus.broadcast(event)
+#func _report_event(event: ActiveStateChangedEvent) -> void:
+#	EventBus.broadcast(event)
 
 # ## States get first crack at handling events
 # ## If they return true, the event is considered handled and doesn’t propagate further

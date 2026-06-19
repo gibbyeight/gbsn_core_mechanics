@@ -1,8 +1,8 @@
 @tool
 extends EditorPlugin
 
-const LOG = "Log"
-const EVENT_BUS = "EventBus"
+const LOG: String = "Log"
+const EVENT_BUS: String = "EventBus"
 
 var _debugger_plugin: EditorDebuggerPlugin
 
